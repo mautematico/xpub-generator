@@ -30,9 +30,11 @@
     "watch:test": "jest --watch"
   },
   "dependencies": {
-    "bitcoinjs-lib": "git://github.com/bitcoinjs/bitcoinjs-lib.git#8f39b516946805c6b4640d1df0fdd33a0ebedba7"
+    "bitcoinjs-lib": "git://github.com/bitcoinjs/bitcoinjs-lib.git#8f39b516946805c6b4640d1df0fdd33a0ebedba7",
+    "bs58check": "^2.1.2"
   },
   "devDependencies": {
+    "@types/bitcoinjs-lib": "^3.4.0",
     "@types/jest": "^23.3.3",
     "@types/node": "^10.11.4",
     "coveralls": "^3.0.2",
