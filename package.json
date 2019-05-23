@@ -29,7 +29,9 @@
     "watch": "npm run build -- --watch",
     "watch:test": "jest --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bitcoinjs-lib": "git://github.com/bitcoinjs/bitcoinjs-lib.git#8f39b516946805c6b4640d1df0fdd33a0ebedba7"
+  },
   "devDependencies": {
     "@types/jest": "^23.3.3",
     "@types/node": "^10.11.4",
