@@ -8,24 +8,38 @@ Here is a quick example of how this module can be used in other modules. The [Ty
 
 > If you are planning to have code in multiple files (which is quite natural for a NodeJS module) that users can import, make sure you update `src/index.ts` file appropriately.
 
-Now assuming you have published this amazing module to _npm_ with the name `my-amazing-lib`, and installed it in the module in which you need it -
+Now assuming you have published this amazing module to _npm_ with the name `xpub-generator`, and installed it in the module in which you need it -
 
-- To use the `Greeter` class in a TypeScript file -
+- To use the `XPubGenerator` class in a TypeScript file -
 
 ```ts
-import { Greeter } from "my-amazing-lib";
-
-const greeter = new Greeter("World!");
-greeter.greet();
+import Bitcoin = require('bitcoinjs-lib');
+import { XPubGenerator } from 'xpub-generator';
+ 
+const g = new XPubGenerator('xpub....');
+g.nthReceiving(1);
+ 
+const gTestnet = new XPubGenerator('tpub...', Bitcoin.networks.testnet);
+gTestnet.nthReceiving(1);
+ 
+const gLitecoin = new XPubGenerator('tpub...', Bitcoin.networks.litecoin);
+gLitecoin.nthReceiving(1);
 ```
 
-- To use the `Greeter` class in a JavaScript file -
+- To use the `XPubGenerator` class in a JavaScript file -
 
 ```js
-const Greeter = require('my-amazing-lib').Greeter;
-
-const greeter = new Greeter('World!');
-greeter.greet();
+const Bitcoin = require('bitcoinjs-lib')
+const XPubGenerator = require('xpub-generator').XPubGenerator;
+ 
+const g = new XPubGenerator('xpub...');
+g.nthReceiving(1);
+ 
+const gTestnet = new XPubGenerator('tpub...', Bitcoin.networks.testnet);
+gTestnet.nthReceiving(1);
+ 
+const gLitecoin = new XPubGenerator('tpub...', Bitcoin.networks.litecoin);
+gLitecoin.nthReceiving(1);
 ```
 
 ## Setting travis and coveralls badges
