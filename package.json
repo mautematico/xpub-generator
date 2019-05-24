@@ -1,13 +1,13 @@
 {
   "name": "xpub-generator",
-  "version": "0.0.0",
+  "version": "1.3.2",
   "description": "xpub-generator",
   "license": "MIT",
   "repository": "",
   "author": {
-    "name": "",
-    "email": "",
-    "url": ""
+    "name": "Mauricio Navarro Miranda",
+    "email": "mauricio@navarromiranda.mx",
+    "url": "https://blog.mautematico.com"
   },
   "keywords": [
     ""
