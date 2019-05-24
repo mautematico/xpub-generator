@@ -2,7 +2,6 @@ import Bitcoin = require('bitcoinjs-lib');
 import b58 = require('bs58check');
 
 export class y2x {
-
   public static yPubOrNot(yPub: string): boolean {
     const version = b58.decode(yPub).slice(0, 4);
     return version.equals(Buffer.from('049d7cb2', 'hex'));
@@ -15,9 +14,7 @@ export class y2x {
     const hash2 = Bitcoin.crypto.hash160(redeemScript);
     const scriptPubkey = Bitcoin.script.scriptHash.output.encode(hash2);
     return Bitcoin.address.fromOutputScript(scriptPubkey);
-
   }
 
-  constructor() { }
-
+  constructor() {}
 }

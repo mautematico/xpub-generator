@@ -2,7 +2,7 @@ import Bitcoin = require('bitcoinjs-lib');
 import { y2x } from './y2x';
 
 interface INetworkEnum {
-  [key: string]: Bitcoin.Network
+  [key: string]: Bitcoin.Network;
 }
 
 export class XPubGenerator {
@@ -11,7 +11,11 @@ export class XPubGenerator {
   private receiving: Bitcoin.HDNode;
   private change: Bitcoin.HDNode;
 
-  constructor(xpub: string, networks: Bitcoin.Network[] | Bitcoin.Network | string = Bitcoin.networks.bitcoin) {
+  constructor(
+    xpub: string,
+    networks: Bitcoin.Network[] | Bitcoin.Network | string = Bitcoin.networks
+      .bitcoin
+  ) {
     this.xpub = xpub;
     if (typeof networks === 'string') {
       networks = (Bitcoin.networks as INetworkEnum)[networks];
@@ -27,7 +31,6 @@ export class XPubGenerator {
       return y2x.hNode2SegwitP2sh(hdNode);
     }
     return hdNode.getAddress().toString();
-
   }
   public nthChange(index: number): string {
     const hdNode = this.change.derive(index);
