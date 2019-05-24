@@ -1,6 +1,10 @@
 import Bitcoin = require('bitcoinjs-lib');
 import { y2x } from './y2x';
 
+interface INetworkEnum {
+  [key: string]: Bitcoin.Network
+}
+
 export class XPubGenerator {
   private xpub: string;
   private hdNode: Bitcoin.HDNode;
@@ -10,7 +14,7 @@ export class XPubGenerator {
   constructor(xpub: string, networks?: Bitcoin.Network[] | Bitcoin.Network | string) {
     this.xpub = xpub;
     if (typeof networks === 'string') {
-      networks = (Bitcoin.networks[networks] as Bitcoin.Network);
+      networks = (Bitcoin.networks as INetworkEnum)[networks];
     }
     this.hdNode = Bitcoin.HDNode.fromBase58(this.xpub, networks);
     this.receiving = this.hdNode.derive(0);
