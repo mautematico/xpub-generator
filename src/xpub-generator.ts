@@ -11,7 +11,7 @@ export class XPubGenerator {
   private receiving: Bitcoin.HDNode;
   private change: Bitcoin.HDNode;
 
-  constructor(xpub: string, networks?: Bitcoin.Network[] | Bitcoin.Network | string) {
+  constructor(xpub: string, networks: Bitcoin.Network[] | Bitcoin.Network | string = Bitcoin.networks.bitcoin) {
     this.xpub = xpub;
     if (typeof networks === 'string') {
       networks = (Bitcoin.networks as INetworkEnum)[networks];
