@@ -1,11 +1,35 @@
-export class XPubGenerator {
-  private greeting: string;
+import Bitcoin = require('bitcoinjs-lib');
+import { y2x } from './y2x';
 
-  constructor(message: string) {
-    this.greeting = message;
+export class XPubGenerator {
+  private xpub: string;
+  private hdNode: Bitcoin.HDNode;
+  private receiving: Bitcoin.HDNode;
+  private change: Bitcoin.HDNode;
+
+  constructor(xpub: string, networks?: Bitcoin.Network[] | Bitcoin.Network | string) {
+    this.xpub = xpub;
+    if (typeof networks === 'string') {
+      networks = (Bitcoin.networks[networks] as Bitcoin.Network);
+    }
+    this.hdNode = Bitcoin.HDNode.fromBase58(this.xpub, networks);
+    this.receiving = this.hdNode.derive(0);
+    this.change = this.hdNode.derive(1);
   }
 
-  public greet(): string {
-    return `Bonjour, ${this.greeting}!`;
+  public nthReceiving(index: number): string {
+    const hdNode = this.receiving.derive(index);
+    if (y2x.yPubOrNot(this.xpub)) {
+      return y2x.hNode2SegwitP2sh(hdNode);
+    }
+    return hdNode.getAddress().toString();
+
+  }
+  public nthChange(index: number): string {
+    const hdNode = this.change.derive(index);
+    if (y2x.yPubOrNot(this.xpub)) {
+      return y2x.hNode2SegwitP2sh(hdNode);
+    }
+    return hdNode.getAddress().toString();
   }
 }
